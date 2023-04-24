@@ -33,11 +33,17 @@ export const get = async ()=>
     }
 }
 
-export const update = async (item)=>
+export const updatedb = async (item)=>
 {
+  console.log(item)
   try 
   {
-    const result = await fetch("http://localhost:3001/update",{method:'PUT',body : item});
+    const result = await fetch("http://localhost:3001/update",
+    {method:'PUT', 
+     headers: {
+      'Content-Type': 'application/json'
+    },
+    body : JSON.stringify(item)});
     if(result)
     return true; 
     return false ; 

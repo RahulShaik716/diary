@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { insert } from '../DB/mongodb';
+import { insert, updatedb } from '../DB/mongodb';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Write = (props) => {
@@ -11,7 +11,9 @@ const Write = (props) => {
 
     const update = (event) => {
         if(!state)
+        {
         setTime(new Date())
+        }
 
         setContent(event.target.value);
     }
@@ -19,9 +21,13 @@ const Write = (props) => {
     const submit = () => {
         let result;
         if(!state)
+        {
         result = insert({ time, content });
+        }
         else
-        result = update({_id : state._id, content : content})
+        {
+        result = updatedb({_id : state._id, content : content});
+        }
         if(result)
         navigate('/list');
 

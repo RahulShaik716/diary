@@ -4,14 +4,18 @@ import Card from "./Card";
 
 const List = () => {
     const [list, setList] = useState([]);
-
+   
     useEffect(() => {
-        console.log('mount called')
-        const result = get();
-        if(result)
-        setList(result)
-        else
-        setList([])
+        const getData = async () =>
+        {
+            const result = await get();
+            if(result)
+            setList(result)
+            else
+            setList([])
+        }
+        getData();
+       
     }, []);
 
     return (
